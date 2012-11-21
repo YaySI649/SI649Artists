@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Original source: http://bl.ocks.org/2206590 -->
+<script src="d3.v2.js"></script>
+<script src="readme.js"></script>
+<!-- <script src="decemberists-geojson.js"></script> -->
+<!-- <script src="decemberists-formatted.js"></script> -->
+<script src="data/usher-pairs.js"></script>
+<script src="data/decem-pairs.js"></script>
+<style>
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#states {
+  fill: #aaa;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+#states .active {
+  fill: steelblue;
+}
+
+.paths {
+  stroke-width: 1px;
+  fill: none;
+}
+
+#usher.paths {
+  stroke: red;
+}
+
+#decem.paths {
+  stroke: blue;
+}
+
+</style>
+<body>
+<script>
+
+var width = 960,
+    height = 500,
+    centered;
+
+var projection = d3.geo.albersUsa()
+    .scale(width)
+    .translate([0, 0]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", click);
+
+var margin_g = svg.append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+var g = margin_g.append("g")
+    .attr("id", "states");
+
+// d3.json("readme.json", function(json) {
+(function(json) {
+  g.selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", path)
+      .on("click", click);
+})(in_features);
+
+// This is the plain projection-based method.
+
+// (function(json) {
+//   // var artist_lines = d3.svg.line()
+//   // var artist_lines = d3.geo.path()
+//     // .projection(projection);
+//   console.log(json);
+
+//   margin_g.append('g')
+//     .attr("id", "paths")
+//   .selectAll("path")
+//     .data(json)
+//   .enter().append("path")
+//     .attr('d', path);
+
+// })(in_events);
+
+// Screw plain projections.  Instead, cast each coordinate manually, then implement it as a series of lines.
+// _It'll still work._
+
+
+function renderArtist(json, id) {
+
+  var artists_g = g.append('g')
+    .attr("class", "paths")
+    .attr("id", id);
+  var decem_lines = d3.svg.line(); // #.interpolate('basis'); //.tension(1);
+
+  artists_g.selectAll('path')
+    // .data(json.events.event.map(function(x) { return x.venue.location["geo:point"]; }))
+    .data([d3.merge(json.map(function (d) {
+      var a1 = d[0], a2 = d[1];
+      // var x1, y1 = a1[0], a1[1];
+      // var x2, y2 = a2[0], a2[1];
+      return [projection(a1), projection(a2)];
+    }))])
+  .enter().append('path')
+    .attr('d', function(d) { console.log(d); return decem_lines(d); });
+
+}
+
+renderArtist(usher_events, 'usher');
+renderArtist(decem_events, 'decem');
+
+function click(d) {
+  var x = 0,
+      y = 0,
+      k = 1;
+
+  if (d && centered !== d) {
+    var centroid = path.centroid(d);
+    x = -centroid[0];
+    y = -centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    centered = null;
+  }
+
+  g.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  g.transition()
+      .duration(1000)
+      .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+}
+
+</script>
