@@ -23,6 +23,10 @@ path {
   fill: #aaa;
   stroke: #fff;
 }
+
+.artists path {
+  stroke: none;
+}
     </style>
   </head>
   <body>
@@ -64,6 +68,10 @@ var scale = {
 
 var path = d3.geo.path()
     .projection(projection);
+
+// var artist_path = d3.geo.path()
+    // .projection(projection);
+    // .pointRadius(1);
 
 var svg = d3.select("#body").append("svg:svg")
     .attr("width", 1280)
@@ -119,13 +127,16 @@ genre_colors = {
 // })(g_artists);
 
 (function(artists) {
-  var g = svg.append('svg:g');
+  var g = svg.append('svg:g')
+    .classed('artists', true);
   artist_paths = g
     .selectAll('path')
     .data(artists.features)
   .enter().append('svg:path')
     .attr('d', clip)
     .style('fill', function(d) { return genre_colors[d.properties.genre]; })
+    .style('opacity', '0.5');
+
 })(artist_features);
 
 d3.select(window)
