@@ -178,13 +178,10 @@ def process_artist_json(artist_json,artist=''):
     #Get Cursor, prepare bulk insert
     cur = connection.cursor()
     insert_count = 0
-    
     mbid = jsonObj['artist']['mbid']
     listener_count = int(jsonObj['artist']['stats']['listeners'])
     playcount = int(jsonObj['artist']['stats']['playcount'])
     bio = jsonObj['artist']['bio']['content']
-    
-    
     cur.execute("select * from ARTISTS where name=\"%s\""%artist)
     if (len(cur.fetchall())==0):
         insert_count += 1
@@ -411,14 +408,11 @@ def process_from_file(mode='events',override_mode=0):
             elif mode == 'artist':
                 json_str = line.split('\t')[1]
                 artist_str = line.split('\t')[0]
-                process_artist_json(json_str, artist_str)
-                '''
                 try:
-                    
+                    process_artist_json(json_str, artist_str)
                 except Exception,e:
                     print e
                     log_error(artist_str + '\t' + str(e)+':\n'+json_str)
-                    '''
         else:
             log_error("invalid json")
             continue
