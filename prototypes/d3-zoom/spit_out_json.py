@@ -8,7 +8,7 @@ def pairwise(iterable):
 	return it.izip(a, b)
 
 unformatted_json = None
-with open('decemberists.js', 'r') as f:
+with open('data/decemberists.js', 'r') as f:
 	unformatted_json = json.load(f)
 
 venues = [x['venue']['location']['geo:point'] for x in unformatted_json['events']['event']]
