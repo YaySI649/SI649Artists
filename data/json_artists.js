@@ -1120,13 +1120,6 @@ var artists = [
         "name": "Eagles"
     },
     {
-        "genre": "GENGE",
-        "listener": 118430,
-        "mbid": "0f77d4e2-e716-4315-a1c0-e95ee9fd724e",
-        "playcount": 3746778,
-        "name": "Earth"
-    },
-    {
         "genre": "Country",
         "listener": 210001,
         "mbid": "c6ada25c-8590-4b75-8013-883a8df55882",
@@ -1547,11 +1540,11 @@ var artists = [
         "name": "Gym Class Heroes"
     },
     {
-        "genre": "GENGE",
+        "genre": "Country",
         "listener": 497148,
         "mbid": "83c84c73-84fa-4668-a75a-7aced8ca34ec",
         "playcount": 5341304,
-        "name": "Hank Williams"
+        "name": "Hank Williams Jr."
     },
     {
         "genre": "Rock",
