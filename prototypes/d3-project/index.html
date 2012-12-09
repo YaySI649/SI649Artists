@@ -129,13 +129,16 @@ genre_colors = {
 (function(artists) {
   var g = svg.append('svg:g')
     .classed('artists', true);
+  
   artist_paths = g
     .selectAll('path')
     .data(artists.features)
   .enter().append('svg:path')
     .attr('d', clip)
     .style('fill', function(d) { return genre_colors[d.properties.genre]; })
-    .style('opacity', '0.5');
+    .style('opacity', '0.5')
+    .attr('title', function(d) { return d.properties.artist_name; });
+  // .exit().remove();
 
 })(artist_features);
 
