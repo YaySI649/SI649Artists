@@ -23,7 +23,7 @@ for row in cur.execute("select * from EVENTS a join ARTISTS b on a.headline_arti
 with open("json_events.js",'w') as h: 
     h.write("var events = " + json.dumps(events,indent=4))
 
-'''
+
 artists = []
 for row in cur.execute("select * from ARTISTS"):
     #print row
@@ -61,5 +61,4 @@ for row in cur.execute("select * from VENUES"):
 
 with open("json_venues.js",'w') as h: 
     h.write("var venues = " + json.dumps(venues,indent=4))
-    '''
     
