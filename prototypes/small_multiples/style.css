@@ -1,0 +1,28 @@
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+.states {
+  fill: #aaa;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.states .active {
+  /*fill: steelblue;*/
+  fill: #999999;
+}
+
+.artists {
+  pointer-events: none;
+}
+
+.paths {
+  stroke-width: 1px;
+  fill: none;
+}
+
+svg {
+  margin: 20px;
+}
