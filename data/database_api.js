@@ -34,8 +34,11 @@ if (!window.openDatabase) {
                 import_json('json_artists');
                 import_json('json_venues');
                 import_json('json_events');
-                PopulateDB();}
-            else {alert("use existing db")}
+                PopulateDB();
+            }
+            else {
+                alert("use existing db");
+            }
         });             
     });
 }
@@ -187,7 +190,26 @@ function PopulateDB(){
                                 $.unblockUI();
                                 //document.location.reload(true);
                             });
+    }); 
+}
+
+function query_db(sql){
+    var result_set = [];
+    db.transaction(function(transaction){
+        transaction.executeSql((sql),[], function(transaction, results){
+            $.each(results.rows, function(rowIndex){
+                    var row = results.rows.item(rowIndex);
+                    result_set.push(row);
+                });
+            console.log(result_set);
+            return result_set;
+        }, function(){
+            console.log("error processing: "+ sql);
+        });             
     });
     
-    
 }
+
+var a = query_db("select count(*), b.city, b.country, c.genre from EVENTS a join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC")
+
+console.log(a)
