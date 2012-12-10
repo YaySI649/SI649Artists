@@ -161,6 +161,23 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 		_.each(small_maps, function(m) {
 			m.zoom(point, k);
 		})
+
+		// var side_list = "<% _.each(genre, function(g) { %> <li><%= g.name %>: <%= g.value %> / <%= g.total %></li> <% }); %>";
+		if (centered) {
+			var s_text = _.map(genre_totals, function(t, g) {
+				console.log("Filtering genres: d is ", centered, ", genre is ", g);
+				if (centered in country_genres) {
+					return g + ': ' + country_genres[centered][g] + ' / ' + t;
+				} else {
+					return '';
+				}
+			});
+
+			// Yay XSS potential.  Fortunately we trust the country_genres file.
+			$('#sidebar').html('<p>' + centered + '</p><ul><li>' + s_text.filter(function(el) { return el != ''; }).join('</li><li>') + '</li></ul>');
+		} else {
+			$('#sidebar').text('The World');
+		}
 	};
 
 	Vis.load = function() {
@@ -173,6 +190,8 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			map.load_features(countries);
 			small_maps.push(map);
 		});
+
+		$('#sidebar').text("The World");
 
 		// // Now that the geo boundaries are there, throw on everything else.
 		// var genre_maps = _.object(_.zip(_.keys(genre_colors), small_maps));
