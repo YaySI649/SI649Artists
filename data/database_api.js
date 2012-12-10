@@ -1,12 +1,13 @@
+/*
 $(function() {
     $( "#progressbar" ).progressbar("value", 37 );
 }); 
-
+*/
 var db;
 //Web SQL is only supported by chrome and Safari
 //If using unsupported browser, prompt users to switch to Chrome
 if (!window.openDatabase) {
-        $.noConflict();
+        //$.noConflict();
         $.blockUI({ 
             message: '<h1>Sorry, your browser is not supported.</h1>'
             +'<h3>Please try <a href=\'https://www.google.com/intl/en/chrome/browser/\'>Chrome</a></h3>',
@@ -54,8 +55,8 @@ function import_json(source){
 
 function PopulateDB(){
     // bockUI to show loading 
-    $.noConflict();
-    $.blockUI({ 
+    //$.noConflict();
+    jQuery.blockUI({ 
         message: $('#blockMessage'),
         css: { 
         border: 'none', 
@@ -108,13 +109,11 @@ function PopulateDB(){
                           function(insertIndex){
                                 //console.log(insertIndex);
                                 document.getElementById('logInsert').innerHTML='Processing '
-                                        +insertIndex+'/'+ (artists.length-1)+" artists";   
-                                jQuery.noConflict();
-                                /*
-                                $(function() {
-                                    $( "#progressbar" ).progressbar("value", 37 );
-                                });  
-                                */ 
+                                        +insertIndex+'/'+ (artists.length-1)+" artists";  
+                                if (insertIndex%100==0 || insertIndex == artists.length-1){
+                                    $( "#progressbar" ).progressbar("value", Math.round(insertIndex/(artists.length-1)*100) );
+                                }
+                                
                           })
         }        
     });
@@ -145,7 +144,9 @@ function PopulateDB(){
                                 //console.log(insertIndex);
                                 document.getElementById('logInsert').innerHTML='Processing '
                                         +insertIndex+'/'+ (venues.length-1)+" venues";
-                              
+                                if (insertIndex%3000==0 || insertIndex == venues.length-1){
+                                    $( "#progressbar" ).progressbar("value", Math.round(insertIndex/(venues.length-1)*100) );
+                                }
                           })
         }        
     });
@@ -175,6 +176,10 @@ function PopulateDB(){
                                 //console.log(insertIndex);
                                 document.getElementById('logInsert').innerHTML='Processing '
                                         +insertIndex+'/'+ (events.length-1)+" events";
+                                if (insertIndex%8000==0 || insertIndex == events.length-1){
+                                    $( "#progressbar" ).progressbar("value", Math.round(insertIndex/(events.length-1)*100) );
+                                }
+                                
                                 if (insertIndex==events.length-1){
                                     document.getElementById('logInsert').innerHTML='Creating Index'
                                 }
@@ -187,10 +192,12 @@ function PopulateDB(){
         transaction.executeSql("CREATE INDEX artist_id on ARTISTS(name);",[],
                             function(){
                                 alert("done");
-                                $.unblockUI();
+                                //$.noConflict();
+                                jQuery.unblockUI();
                                 //document.location.reload(true);
                             });
     }); 
+    
 }
 
 function query_db(sql){
@@ -210,6 +217,5 @@ function query_db(sql){
     
 }
 
-var a = query_db("select count(*), b.city, b.country, c.genre from EVENTS a join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC")
-
-console.log(a)
+//var a = query_db("select count(*), b.city, b.country, c.genre from EVENTS a join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC")
+//console.log(a)
