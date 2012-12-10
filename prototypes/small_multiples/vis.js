@@ -60,10 +60,14 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 	var click = null;
 
 	// Generator for each small map.
-	var gen_map = function(sel) {
+	var gen_map = function(sel, genre) {
 		var map = {};
 
 		// From D3 zoom example
+
+		var genre_scale = d3.scale.linear()
+			.domain([0, genre_totals[genre]])
+			.range(['#eee', genre_colors[genre]]);
 		
 		var svg = d3.select(sel).append("svg")
 			.attr("width", width)
@@ -88,13 +92,21 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 
 		map.load_features = function(countries) {
 			g.selectAll("path")
-			  .data(countries.features)
+				.data(countries.features)
 			.enter().append("path")
-			  .attr("d", path)
-			  .on("click", click);
+				.attr("d", path)
+				.style("fill", function(d) {
+					var n = d.properties.name;
+					if (n in country_genres && genre in country_genres[n]) {
+						return genre_scale(country_genres[n][genre])
+					} else {
+						return 'white';
+					}
+				})
+				.on("click", click);
 		};
 
-		map.load_data = function(events, genre) {
+		map.load_data = function(events) {
 			artist_paths = artist_g
 			  .selectAll('path')
 			  .data(events.features.filter(function(f) { return f.properties.genre == genre; }))
@@ -116,16 +128,16 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			g.transition()
 			  .duration(1000)
 			  .attr("transform", "scale(" + k + ")translate(" + point.x + "," + point.y + ")")
-			  .style("stroke-width", 1.5 / k + "px");
+			  .style("stroke-width", 0.5 / k + "px");
 
-			artist_g.transition()
-			  .duration(1000)
-			  .attr("transform", "scale(" + k + ")translate(" + point.x + "," + point.y + ")");
+			// artist_g.transition()
+			//   .duration(1000)
+			//   .attr("transform", "scale(" + k + ")translate(" + point.x + "," + point.y + ")");
 
-			artist_g.selectAll('path').transition()
-			  .duration(1000)
-			  .attr('d', artist_path);
-			  // .attr("transform", "scale(" + k + ")translate(" + point.x + "," + point.y + ")");
+			// artist_g.selectAll('path').transition()
+			//   .duration(1000)
+			//   .attr('d', artist_path);
+			//   // .attr("transform", "scale(" + k + ")translate(" + point.x + "," + point.y + ")");
 		};
 
 		return map;
@@ -152,26 +164,22 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 	};
 
 	Vis.load = function() {
-		for (var i = 0; i < 6; i++) {
-
-			// if (i > 0 && i % 2 == 0) {
-			// 	$('body').append('<br />');
-			// }
-
-			var id = "map_" + i;
+		_.each(genre_colors, function(v, k) {
+			var id = "map_" + k;
 			var map_container = $('<div />').appendTo('body').attr('id', id).css('float', 'left');
+			map_container.prepend('<span>' + k + "</span><br />");
 
-			var map = gen_map(map_container.get(0));
+			var map = gen_map(map_container.get(0), k);
 			map.load_features(countries);
 			small_maps.push(map);
-		}
-
-		// Now that the geo boundaries are there, throw on everything else.
-		var genre_maps = _.object(_.zip(_.keys(genre_colors), small_maps));
-		_.each(genre_maps, function(map, genre) {
-			map.load_data(artist_features, genre);
-			$(map.element).before('<span>' + genre + "</span><br />");
 		});
+
+		// // Now that the geo boundaries are there, throw on everything else.
+		// var genre_maps = _.object(_.zip(_.keys(genre_colors), small_maps));
+		// _.each(genre_maps, function(map, genre) {
+		// 	map.load_data(artist_features, genre);
+		// 	$(map.element).before('<span>' + genre + "</span><br />");
+		// });
 	};
 
 

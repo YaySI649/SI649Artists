@@ -5,8 +5,8 @@
 
 .states {
   fill: #aaa;
-  stroke: #fff;
-  stroke-width: 1.5px;
+  stroke: black;
+  stroke-width: 0.5px;
 }
 
 .states .active {
