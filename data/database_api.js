@@ -32,9 +32,11 @@ if (!window.openDatabase) {
             if (count==0){ 
                 alert("populate db");
                 //import datasource json
-                import_json('json_artists');
-                import_json('json_venues');
-                import_json('json_events');
+                //import_json('json_artists');
+                //import_json('json_venues');
+                //import_json('json_events');
+                //import_json('sql_artists');
+                //import_json('sql_venues');
                 PopulateDB();
             }
             else {
@@ -45,12 +47,25 @@ if (!window.openDatabase) {
 }
 
 //import datasour json
-function import_json(source){
+function load_sql(source, callback){
     var head= document.getElementsByTagName('head')[0];
     var script= document.createElement('script');
     script.type= 'text/javascript';
     script.src= source+'.js';
+    script.onreadystatechange = callback;
+    script.onload = callback;
     head.appendChild(script);
+}
+
+//lightspeed bulk insert based on js file with sql
+function BulkInsert(sqls, type){
+    db.transaction(function(transaction){
+       for (sql in sqls){
+           transaction.executeSql((sqls[sql]),[], function(transaction, results){
+                document.getElementById('logInsert').innerHTML='Processing '+type;
+                $( "#progressbar" ).progressbar("value", Math.round(sql/(sqls.length-1)*100) );
+            });  
+       }});
 }
 
 function PopulateDB(){
@@ -87,7 +102,9 @@ function PopulateDB(){
     var errCallback = function(){
         console.log("Some error occured during Inserting");
     }
-
+    
+    //Snail speed insert - deprecated
+    /*
     //func to insert one artist
     var insert_artist = function (name, genre, listener, playcount, mbid,
                                   i, transaction, successCallback){
@@ -187,8 +204,17 @@ function PopulateDB(){
         }        
     });
     
-    //Create index for artists (after insert)
+    
+    */
+
+   //lightspeed insert
+   BulkInsert(sql_artists, 'Artists');
+   BulkInsert(sql_venues, 'Venues');
+   BulkInsert(sql_events, 'Events');
+   
+   //Create index for artists (after insert)
     db.transaction(function(transaction){
+        document.getElementById('logInsert').innerHTML='Creating Index'
         transaction.executeSql("CREATE INDEX artist_id on ARTISTS(name);",[],
                             function(){
                                 alert("done");
@@ -197,7 +223,7 @@ function PopulateDB(){
                                 //document.location.reload(true);
                             });
     }); 
-    
+   
 }
 
 function query_db(sql){
@@ -210,7 +236,7 @@ function query_db(sql){
                 });
             console.log(result_set);
             return result_set;
-        }, function(){
+        }, function(transactoin, error){
             console.log("error processing: "+ sql);
         });             
     });
