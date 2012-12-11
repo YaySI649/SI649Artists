@@ -1,5 +1,5 @@
-get_json.py:
-* move your lastfmDB.db to this folder and run get_json to spit out .js files
+get_sql.py:
+* move your lastfmDB.db to this folder and run get_sql to spit out insert sqls in .js files
 
 base.html: a template to display population process
 
@@ -11,3 +11,7 @@ scrape.py and gob.py:
 * The script is powered by multiprocessing, requests and sqlite3 module
 * The suggested way of using this script is use gbo.py to generate a local file storing all the API responses (json), then use process_from_file() to parse json file and populate sqlite database.
 * gbo.py is a multiprocessing approach. Its fast, but do not attempt to use it to do database insert (bad concurrency in sqlite)
+
+
+get_json.py (deprecated):
+* move your lastfmDB.db to this folder and run get_json to spit out .js files

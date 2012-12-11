@@ -1,6 +1,6 @@
 import sqlite3 as lite
 import simplejson as json
-
+import unicodedata
 con = lite.connect("lastfmDB.db")
 cur = con.cursor()
 
@@ -11,9 +11,16 @@ def dump_venues():
     sql_list = []
     sql = ""
     rows = cur.execute("select * from VENUES").fetchall()
+    print len(rows)
     for row in rows:
         (id, name), website, (city, country, street, postal, lat, long) = \
                                                     row[0:2], row[3], row[5:11]
+        #name = name.encode('unicode-escape')
+        #city = city.encode('unicode-escape')
+        #street = street.encode('unicode-escape')
+        #country = country.encode('unicode-escape')
+        #postal = postal.encode('unicode-escape')
+        #website = website.encode('unicode-escape')
         if i==1 or i%500 == 1:
             sql = """INSERT INTO VENUES select %d as venue_id, \\"%s\\" as name, \\"%s\\" as city, \\"%s\\" as country, \\"%s\\" as street, \\"%s\\" as postal,%g as lat, %g as long, \\"%s\\" as website """% (id, name, city, postal, country, street, lat, long, website)
         else:
@@ -25,11 +32,13 @@ def dump_venues():
     with open('sql_venues.js', 'w') as h:
         h.write("var sql_venues = [\n")
         for sql in sql_list:
-            sql = sql.encode('utf-8')
+            #sql = sql.encode('utf-8')
+            #sql = sql.encode('unicode-escape')
+            sql =  unicodedata.normalize('NFKD', sql).encode('ASCII', 'ignore')
             try:
                 h.write("\"" + sql + "\",\n")
             except:
-                #import ipdb;ipdb.set_trace()
+                import ipdb;ipdb.set_trace()
                 print sql
         h.write(']')
 
@@ -41,6 +50,7 @@ def dump_artists():
     print len(rows)
     for row in rows:
         name, genre, mbid, listener, playcount = row[0:5]
+        #name = name.encode("unicode-escape")
         #print name
         
         if i==1 or i%500 == 1:
@@ -49,17 +59,24 @@ def dump_artists():
             sql += """UNION SELECT \\"%s\\", \\"%s\\", %d, %d, \\"%s\\" """% (name, genre, listener, playcount, mbid)
         if i%500==0 or i == (len(rows)):
             sql_list.append(sql)
+        #if name[0:4]=="Beyo":
+        #    import ipdb;ipdb.set_trace()
         i += 1
     
     with open('sql_artists.js', 'w') as h:
         h.write("var sql_artists = [\n")
         for sql in sql_list:
-            sql = sql.encode('utf-8')
+            #sql = sql.encode('utf-8').decode('utf-8')
+            #sql = sql.encode('unicode-escape')
+            sql =  unicodedata.normalize('NFKD', sql).encode('ASCII', 'ignore')
+            h.write("\"" + sql + "\",\n")
+            """
             try:
                 h.write("\"" + sql + "\",\n")
             except:
                 #import ipdb;ipdb.set_trace()
                 print sql
+                """
         h.write(']')
         
 def dump_events():
@@ -70,7 +87,10 @@ def dump_events():
     print len(rows)
     for row in rows:
         (id, title,date,headliner,venue_id),image,cancelled = row[0:5],row[6], row[12]
+        #title = title.encode('unicode-escape')
+        #headliner = headliner.encode('unicode-escape')
         #print name
+        
         if i==1 or i%500 == 1:
             sql = """INSERT INTO EVENTS select %d as event_id, \\"%s\\" as title, \\"%s\\" as date, \\"%s\\" as headliner, %d as venue_id, \\"%s\\" as image, \\"%s\\" as cancelled """% (id, title,date,headliner,venue_id,image,cancelled)
         else:
@@ -82,7 +102,10 @@ def dump_events():
     with open('sql_events.js', 'w') as h:
         h.write("var sql_events = [\n")
         for sql in sql_list:
-            sql = sql.encode('utf-8')
+            #sql = sql.encode('utf-8')
+            #sql = sql.encode('unicode-escape')
+            sql = sql.replace("\n","")
+            sql =  unicodedata.normalize('NFKD', sql).encode('ASCII', 'ignore')
             try:
                 h.write("\"" + sql + "\",\n")
             except:

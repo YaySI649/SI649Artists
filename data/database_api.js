@@ -46,7 +46,7 @@ if (!window.openDatabase) {
     });
 }
 
-//import datasour json
+//import datasource json
 function load_sql(source, callback){
     var head= document.getElementsByTagName('head')[0];
     var script= document.createElement('script');
