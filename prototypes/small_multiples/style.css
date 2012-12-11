@@ -1,0 +1,36 @@
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+.states {
+  fill: #aaa;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.states .active {
+  /*fill: steelblue;*/
+  fill: #999999;
+}
+
+.artists {
+  pointer-events: none;
+}
+
+.paths {
+  stroke-width: 1px;
+  fill: none;
+}
+
+svg {
+  margin: 20px;
+}
+
+#sidebar {
+
+}
+
+#side_wrapper {
+  float: right;
+}
