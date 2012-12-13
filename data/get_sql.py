@@ -83,7 +83,8 @@ def dump_events():
     i = 1
     sql_list = []
     sql = ""
-    rows = cur.execute("select * from EVENTS").fetchall()
+    #rows = cur.execute("select * from EVENTS").fetchall()
+    rows = cur.execute("select * from EVENTS a join ARTISTS b on a.headline_artist = b.name").fetchall()
     print len(rows)
     for row in rows:
         (id, title,date,headliner,venue_id),image,cancelled = row[0:5],row[6], row[12]

@@ -3,49 +3,23 @@
 
     <head>
         <!--
-        <script type="text/javascript" src="../jquery/jquery.js"></script>
-        <script type="text/javascript" src="../jquery/jquery.blockUI.js"></script>
-        <script type="text/javascript" src="../jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="../jquery/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
         -->
-        
-        <!--
-        <script type="text/javascript" src="../jquery/jquery.js"></script>
-        -->
-        
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
         <script type="text/javascript" src="../jquery/jquery.blockUI.js"></script>
         
-        <!-- SHOULD　LOAD THE FOLLOWING DATASOURCE CONDITIONALLY!!!!!!! -->
-        <script type="text/javascript" src="sql_artists.js"></script>
-        <script type="text/javascript" src="sql_venues.js"></script>
-        <script type="text/javascript" src="sql_events.js"></script>
- 
-        <script type="text/javascript" >
-            $(document).ready(function() {
-            $("#progressbar").progressbar({ value: 0 });
-          });
-          
-        </script>
+        <!-- The following will load sql json and setup db -->
+        <script type="text/javascript" src="database_api.js"></script>
     </head>
     
-    
   <body style="font-family: Arial;border: 0 none;">
-    
-    <div id="blockMessage" style='display:none;'>
-        <h1> Just a minute...</h1>
-        <h3> Preloading Database </h3>
-        <h3> You won't need to wait after this first time:)</h3>
-        <h3 id='logInsert'>Loading Data</h3>
-        <div id='progressbar'></div>    
-    </div>
+  
+  <!--  Your stuff goes here -->
     
   </body>
   
-  <!-- The following will load json and setup db -->
-  <script type="text/javascript" src="database_api.js"></script>
+  
   
 </html>
