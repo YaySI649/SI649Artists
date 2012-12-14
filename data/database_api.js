@@ -107,9 +107,9 @@ function BulkInsert(type){
                function(insert_index, len, type){
                    //console.log(insert_index);
                    document.getElementById('logInsert').innerHTML='Processing '+type;
-                   //if (insert_index%10==0 || insert_index == len-1){
+                   if (insert_index%10==0 || insert_index == len-1){
                        $( "#progressbar" ).progressbar("value", Math.round(insert_index/(len-1)*100) );
-                   //}
+                   }
                })
        }});
 }
@@ -158,7 +158,8 @@ var PopulateDB = function(){
 //no anti injection, so dont try to burn the db@@
 function query_db(sql){
     var result_set = [];
-    db.transaction(function(transaction){
+    db_con = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 50*1024*1024);
+    db_con.transaction(function(transaction){
         transaction.executeSql((sql),[], function(transaction, results){
             $.each(results.rows, function(rowIndex){
                     var row = results.rows.item(rowIndex);

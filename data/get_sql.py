@@ -21,11 +21,11 @@ def dump_venues():
         #country = country.encode('unicode-escape')
         #postal = postal.encode('unicode-escape')
         #website = website.encode('unicode-escape')
-        if i==1 or i%500 == 1:
+        if i==1 or i%320 == 1:
             sql = """INSERT INTO VENUES select %d as venue_id, \\"%s\\" as name, \\"%s\\" as city, \\"%s\\" as country, \\"%s\\" as street, \\"%s\\" as postal,%g as lat, %g as long, \\"%s\\" as website """% (id, name, city, postal, country, street, lat, long, website)
         else:
             sql += """UNION SELECT %d, \\"%s\\", \\"%s\\", \\"%s\\", \\"%s\\", \\"%s\\", \\"%g\\", \\"%g\\",\\"%s\\" """%(id, name, city, postal, country, street, lat, long, website)
-        if i%500==0 or i == (len(rows)):
+        if i%320==0 or i == (len(rows)):
             sql_list.append(sql)
         i += 1
     
@@ -53,11 +53,11 @@ def dump_artists():
         #name = name.encode("unicode-escape")
         #print name
         
-        if i==1 or i%500 == 1:
+        if i==1 or i%320 == 1:
             sql = """INSERT INTO ARTISTS select \\"%s\\" as name, \\"%s\\" as genre, %d as listener, %d as playcount, \\"%s\\" as mbid """% (name, genre, listener, playcount, mbid)
         else:
             sql += """UNION SELECT \\"%s\\", \\"%s\\", %d, %d, \\"%s\\" """% (name, genre, listener, playcount, mbid)
-        if i%500==0 or i == (len(rows)):
+        if i%320==0 or i == (len(rows)):
             sql_list.append(sql)
         #if name[0:4]=="Beyo":
         #    import ipdb;ipdb.set_trace()
@@ -92,11 +92,11 @@ def dump_events():
         #headliner = headliner.encode('unicode-escape')
         #print name
         
-        if i==1 or i%500 == 1:
+        if i==1 or i%320 == 1:
             sql = """INSERT INTO EVENTS select %d as event_id, \\"%s\\" as title, \\"%s\\" as date, \\"%s\\" as headliner, %d as venue_id, \\"%s\\" as image, \\"%s\\" as cancelled """% (id, title,date,headliner,venue_id,image,cancelled)
         else:
             sql += """UNION SELECT %d, \\"%s\\", \\"%s\\", \\"%s\\", %d, \\"%s\\", \\"%s\\"  """% (id, title,date,headliner,venue_id,image,cancelled)
-        if i%500==0 or i == (len(rows)):
+        if i%320==0 or i == (len(rows)):
             sql_list.append(sql)
         i += 1
     
