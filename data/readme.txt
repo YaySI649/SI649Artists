@@ -3,9 +3,10 @@ How to have the backend set up.
 2. run get_sql.py, which should give you 3 sql_artists/events/venue.js files
 3. import related jquery files, plz refer to base.html
 4. Importing the database_api.js file will automatically load sql files, create db, tables and populate (also add some html)
-5. Then you could use query_db(sql) to query and get results in list.
+5. Then you could use query_db(sql) to query and get results in list. ASYNC, PLEASE USE CALLBACKS
 6. Never need to spend time load the huge js file or populate db again:)
 7. *If the tables are already created yet population run into error, you will need to manually drop all tables in developer tools and refresh. Yes, it only populates if no table pre-exists. To add new data, you will also need to manully drop tables
+8. Should put your set_up functions in callback after line 67 in database_api.js
 
 Files:
 # get_sql.py: move your lastfmDB.db to this folder and run get_sql to spit out insert sqls in .js files

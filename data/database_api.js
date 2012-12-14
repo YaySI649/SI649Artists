@@ -64,7 +64,14 @@ $(document).ready(function() {
                     load_sql('sql_events', PopulateDB);
                 }
                 else {
-                    alert("use existing db");
+                    /////////////////////////////////////////////////
+                    ///SHOULD　ADD CALLBACKS IN HERE!!!!!!!!
+                    //////////////////////////////////////////////
+                    alert("use existing db - SHOULD ADD SET UP FUNCS IN CALLBACK HERE!!!!");
+                    // test
+                    //query_db("select count(*), b.city, b.country, c.genre from EVENTS a "+
+                    //  " join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = "+
+                    //  "a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC");
                 }
             });             
         });
