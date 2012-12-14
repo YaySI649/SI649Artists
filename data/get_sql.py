@@ -52,7 +52,7 @@ def dump_artists():
         name, genre, mbid, listener, playcount = row[0:5]
         #name = name.encode("unicode-escape")
         #print name
-        
+        name = name.title()
         if i==1 or i%320 == 1:
             sql = """INSERT INTO ARTISTS select \\"%s\\" as name, \\"%s\\" as genre, %d as listener, %d as playcount, \\"%s\\" as mbid """% (name, genre, listener, playcount, mbid)
         else:
@@ -84,13 +84,14 @@ def dump_events():
     sql_list = []
     sql = ""
     #rows = cur.execute("select * from EVENTS").fetchall()
-    rows = cur.execute("select * from EVENTS a join ARTISTS b on a.headline_artist = b.name").fetchall()
+    rows = cur.execute("select * from EVENTS a join ARTISTS b on lower(a.headline_artist) = lower(b.name)").fetchall()
     print len(rows)
     for row in rows:
         (id, title,date,headliner,venue_id),image,cancelled = row[0:5],row[6], row[12]
         #title = title.encode('unicode-escape')
         #headliner = headliner.encode('unicode-escape')
         #print name
+        headliner = headliner.title()
         
         if i==1 or i%320 == 1:
             sql = """INSERT INTO EVENTS select %d as event_id, \\"%s\\" as title, \\"%s\\" as date, \\"%s\\" as headliner, %d as venue_id, \\"%s\\" as image, \\"%s\\" as cancelled """% (id, title,date,headliner,venue_id,image,cancelled)
