@@ -154,9 +154,14 @@ var PopulateDB = function(){
     }); 
 }
 
+
+
 //Main API to execute sql and return obj list
-//no anti injection, so dont try to burn the db@@
-function query_db(sql){
+//ASYNC!!! PLEASE　USE CALLBACKS
+//default callback is logging
+function query_db(sql, callback){
+    // if no callback, log result (default)
+    callback = typeof callback !== 'undefined' ? callback : callback_log;
     var result_set = [];
     db_con = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 50*1024*1024);
     db_con.transaction(function(transaction){
@@ -165,13 +170,21 @@ function query_db(sql){
                     var row = results.rows.item(rowIndex);
                     result_set.push(row);
                 });
-            console.log(result_set);
-            return result_set;
+            //HERE the callback
+            callback(result_set);
         }, function(transactoin, error){
             console.log("error processing: "+ sql);
         });             
     });
 }
 
+// the default callback for querydb
+function callback_log(result){
+        //for (i in result){
+            console.log(result);
+            //console.log(result[i]);
+        //}
+    }
+
 //teaser query:)
-//var a = query_db("select count(*), b.city, b.country, c.genre from EVENTS a join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC")
+//query_db("select count(*), b.city, b.country, c.genre from EVENTS a join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC")
