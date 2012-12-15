@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title>Leaflet</title>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="leaflet/leaflet-src.js"></script>
+	<script type="text/javascript" src="underscore.js"></script>
+	<script type="text/javascript" src="d3.v2.js"></script>
+	<script type="text/javascript" src="data/genre_totals.js"></script>
+	<link type="text/css" rel="stylesheet" href="leaflet/leaflet.css"/>
+	<style>
+		#map { height: 500px; }
+	</style>
+	<script>
+
+		var genre_totals = {
+			"RB/Soul": 105,
+			"alternative/indie rock": 47,
+			"Rock": 132,
+			"Country": 173,
+			"Pop": 119,
+			"Rap/Hip Hop": 129
+		};
+
+		$(function() {
+
+			var map = L.map('map').setView([37.8, -96], 4);
+			CM_ATTR = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+							'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+							'Imagery © <a href="http://cloudmade.com">CloudMade</a>';
+
+			L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+			    key: 'fa9058fec5c847268ff72b834c392c2e',
+			    attribution: CM_ATTR,
+			    styleId: 22677
+			}).addTo(map);
+
+			var genre_scale = d3.scale.linear()
+				.domain([0, genre_totals["Rap/Hip Hop"]])
+				.range(['#eee', 'red']);
+
+			$.getJSON('data/country_genre_map.js', function(country_genre_map) {
+
+				$.getJSON('data/simple_world_2.js', function(json) {
+					console.log("JSON loaded.");
+					json.features = json.features.filter(function(el) { return el.geometry !== null; });
+					L.geoJson(json, {
+						onEachFeature: function (feature, layer) {
+							// console.log(feature.ADMI);
+						    if (feature.properties && feature.properties.ADMIN) {
+						        layer.bindPopup(feature.properties.ADMIN);
+						    }
+						},
+						style: function(feature) {
+							// Use a D3 scale to color them.
+							if (feature.properties.ADM1_CODE) {
+								try {
+									var gcount = country_genre_map[feature.properties.ADM1_CODE]["Rap/Hip Hop"];
+									if (gcount) {
+										return {
+											fillColor: genre_scale(gcount),
+											weight: 0,
+											fillOpacity: 0.7
+										};
+									}
+								} catch (e) {
+
+								}
+							}
+
+							return {
+								fillColor: '#fff',
+								weight: 0
+							};
+						}
+					}).addTo(map);
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="map"></div>
+</body>
+</html>
