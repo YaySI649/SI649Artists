@@ -3,9 +3,8 @@
  Automatically import data source files
  */
 
-var db;
-
 $(document).ready(function() {
+    var db;
     //Web SQL is only supported by chrome and Safari
     //If using unsupported browser, prompt users to switch to Chrome
     if (!window.openDatabase) {
@@ -37,7 +36,7 @@ $(document).ready(function() {
         $("#progressbar").progressbar({ value: 0 });
         
         //Open the web SQL db, create if does not exists
-        db = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 50*1024*1024);
+        db = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 30*1024*1024);
         var count = 0;
         //try if table exist, if not, create and populate  
         db.transaction(function(transaction){
@@ -98,7 +97,7 @@ function insert_sql_block(transaction, sql, insert_index, len, type, successCall
 }
 
 //lightspeed bulk insert based on js file with sql
-function BulkInsert(type){
+function BulkInsert(type, db){
     var sqls;
     if (type=='ARTISTS'){
         sqls = sql_artists;
@@ -123,6 +122,7 @@ function BulkInsert(type){
 
 //main function to populate db
 var PopulateDB = function(){
+    var db = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 30*1024*1024);
     //$.noConflict();
     // Create tables
     db.transaction(function(transaction){
@@ -144,9 +144,9 @@ var PopulateDB = function(){
     }
 
    //lightspeed insert
-   BulkInsert('ARTISTS');
-   BulkInsert('VENUES');
-   BulkInsert('EVENTS');
+   BulkInsert('ARTISTS', db);
+   BulkInsert('VENUES', db);
+   BulkInsert('EVENTS', db);
    
    //Create index for artists table (after insert)
     db.transaction(function(transaction){
@@ -161,8 +161,6 @@ var PopulateDB = function(){
     }); 
 }
 
-
-
 //Main API to execute sql and return obj list
 //ASYNC!!! PLEASE　USE CALLBACKS
 //default callback is logging
@@ -170,7 +168,7 @@ function query_db(sql, callback){
     // if no callback, log result (default)
     callback = typeof callback !== 'undefined' ? callback : callback_log;
     var result_set = [];
-    db_con = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 50*1024*1024);
+    db_con = openDatabase("lastfmDB", "1.0", "music events, artists and venues", 30*1024*1024);
     db_con.transaction(function(transaction){
         transaction.executeSql((sql),[], function(transaction, results){
             $.each(results.rows, function(rowIndex){
