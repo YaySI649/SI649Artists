@@ -3,7 +3,12 @@
  Automatically import data source files
  */
 
-$(document).ready(function() {
+$(document).ready(function(){
+    setup_db();
+})
+
+// check if db exists then populate or callback
+function setup_db(){
     var db;
     //Web SQL is only supported by chrome and Safari
     //If using unsupported browser, prompt users to switch to Chrome
@@ -75,7 +80,7 @@ $(document).ready(function() {
             });             
         });
     }
-});
+}
 
 //import datasource json and onload callback (populateDB)
 function load_sql(source, callback){
