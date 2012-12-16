@@ -284,17 +284,32 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 
 $(function() {
 	var map = Vis.genMap('map1');
-
     setup_db();
-
 	_.each(Vis.genre_totals, function(v, k) {
-		var button = $('<button>' + k + '</button>');
-		$('#controls').append(button);
-		button.click(function() {
-			map.set_genre($(this).text());
+		//var button = $('<button>' + k + '</button>');
+		if(k=="all"){
+           var radio = $("<input type=\"radio\" id=\"radio_"+
+                        k+"\" name=\"radio\" checked=\"checked\"//><label for=\"radio_"+
+                        k+"\">" + k + "</label>")
+		} else{
+		   var radio = $("<input type=\"radio\" id=\"radio_"+
+                    k+"\" name=\"radio\" //><label for=\"radio_"+
+                    k+"\">" + k + "</label>") 
+		}
+		//$('#controls').append(button);
+		$('#controls').append(radio);
+		radio.click(function() {
+		    var genre = ($(this).text());
+		    if (genre!=""){
+		        map.set_genre($(this).text());
+		    }
 		});
 	});
-
+    
+    $(function() {
+        $( "#controls" ).buttonset();
+    });
+    
 	//map.set_artist('Usher');
 
 	window.yayMap = map;
