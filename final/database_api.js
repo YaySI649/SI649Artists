@@ -200,7 +200,7 @@ function get_artist_geojson(artist, lower_date, upper_date, callback){
     
     var artist_sql = "select e.title, v.name, v.long, v.lat, count(*) as count "+
                         "from EVENTS e, VENUES v where e.headliner = '" + artist+
-                        "'and v.venue_id = e.venue_id and e.cancelled = 0 " +
+                        "' and v.venue_id = e.venue_id and e.cancelled = 0 and v.lat != 999 and v.long != 999 " +
                         "and strftime('%Y', date) between '" + lower_date + "' and '" + upper_date + "' group by v.venue_id";
     console.log(artist_sql);
     query_db(artist_sql, function(results) {

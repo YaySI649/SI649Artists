@@ -149,12 +149,6 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 		// Woah abrupt programming style shift.
 		// But I don't know quite enough Leaflet / JS object patterns to be consistent right now.
 		function add_artist_layer(artist) {
-			if (artist_layer_instance != null) {
-				console.log("Clearing artist layer.");
-				// Remove it from the map.
-				map.removeLayer(artist_layer_instance);
-			}
-
 			// Bostocks' Leaflet to D3 projection bridge.
 			function project(x) {
 				var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
@@ -254,6 +248,11 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			// (Incorporates the date range filter)
 			queryArtist(artist, function(artist_json) {
 				artist_data = artist_json;
+				if (artist_layer_instance != null) {
+					console.log("Clearing artist layer.");
+					// Remove it from the map.
+					map.removeLayer(artist_layer_instance);
+				}
 				artist_layer_instance = new artist_layer_class();
 				map.addLayer(artist_layer_instance);
 			});
