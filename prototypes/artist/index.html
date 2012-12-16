@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load('visualization', '1.1', {packages: ['controls','corechart']});
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="jquery.blockUI.js"></script>
+        <script type="text/javascript" src="dragslider.js"></script> 
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
+        <script src="http://d3js.org/d3.v2.min.js"></script>
+        <script type="text/javascript" src="database_api.js"></script>
+        <script type="text/javascript" src="artist.js"></script>     
+
+    </head>
+    <style>
+
+        body {
+          font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+
+        .bar {
+          fill: steelblue;
+        }
+
+        .x.axis path {
+          display: none;
+        }
+
+        .tick{display: none;}
+
+    </style>
+    
+    <body style="font-family: Arial;border: 0 none;">
+        Artist: <input id="artist" type="text" name="Artist">
+        
+        <div id="chart"></div>
+
+        <div id='year' style='margin:0px 20px;'>
+            <div id='widget' style='float:left;'>
+                <div id = 'slider_year' style="margin-left: 16px; width: 883px;"></div>
+            </div>
+            <div id='maxmin' style='float:left; margin:20px;'>
+                    <span style='float:left;padding:0px 8px 0px 0px;font:bold 15px Ariel,sans-serif'>From:</span>
+                    <span id = 'min_year' style='float:left;font:bold 15px Ariel,sans-serif'>1960</span>
+                    </br>
+                    <span style='float:left;padding:0px 5px 0px 0px;font:bold 15px Ariel,sans-serif'>To:</span>
+                    <span id = 'max_year' style='float:right;font:bold 15px Ariel,sans-serif'>2012</span>  
+            </div>
+        </div>
+
+    </body>
+
+  
+</html>
