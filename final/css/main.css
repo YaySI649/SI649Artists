@@ -1,3 +1,11 @@
 .map {
 	height: 500px;
 }
+
+.map_body {
+	pointer-events: none;
+}
+.map_body path {
+	cursor: pointer;
+	pointer-events: auto;
+}

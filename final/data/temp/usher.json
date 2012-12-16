@@ -1,0 +1,200 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "title": "American Music Festival", "name": "Ocean Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -81.010519, 29.22865 ] } }
+,
+{ "type": "Feature", "properties": { "title": "At AMA Awards 2012", "name": "Nokia Theatre LA Live", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -118.267372, 34.044357 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Channel 93.3 Summer Kick-off", "name": "Cricket Wireless Amphitheatre", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -117.008901, 32.588035 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Confessions Tour", "name": "Fleetcenter", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -71.062, 42.366301 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG TOUR", "name": "POPB \/ Palais Omnisports de Paris-Bercy", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 2.379443, 48.839112 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "Ahoy", "count": 3.0 }, "geometry": { "type": "Point", "coordinates": [ 4.486211, 51.881762 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "Key Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -122.352215, 47.621178 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "Knig Pilsener Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 6.872538, 51.490162 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "National Indoor Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -1.92104, 52.483698 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "O2 Arena", "count": 2.0 }, "geometry": { "type": "Point", "coordinates": [ 0.006877, 51.487582 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "The O2", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -6.246855, 53.347999 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour", "name": "POPB \/ Palais Omnisports de Paris-Bercy", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 2.379443, 48.839112 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour Part 2", "name": "O2 Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 0.006877, 51.487582 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour at Manchester MEN Arena", "name": "Manchester Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -2.243988, 53.487094 ] } }
+,
+{ "type": "Feature", "properties": { "title": "OMG Tour at O2 Arena", "name": "O2 Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 0.006877, 51.487582 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Party In The Park 2001", "name": "Hyde Park", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -0.1166667, 51.5 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Summerfest 2010, June 30th", "name": "Summerfest Grounds", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -87.897661, 43.027552 ] } }
+,
+{ "type": "Feature", "properties": { "title": "The Album Chart Show at Koko", "name": "Koko", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -0.138434, 51.53469 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Adelaide Entertainment Centre", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 138.576685, -34.908591 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Air Canada Centre", "count": 3.0 }, "geometry": { "type": "Point", "coordinates": [ -79.379305, 43.643929 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Allphones Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 151.066716, -33.847907 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Allstate Arena", "count": 2.0 }, "geometry": { "type": "Point", "coordinates": [ -87.884675, 42.005779 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "American Airlines Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -80.189198, 25.781121 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "American Airlines Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -96.810159, 32.790442 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Amway Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -81.384587, 28.540163 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "BankAtlantic Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -80.324639, 26.157094 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Boardwalk Hall", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -74.438391, 39.354905 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Brisbane Entertainment Centre", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 153.068323, -27.340666 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Burswood Dome", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 115.906507, -31.956096 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "CONSOL Energy Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -79.988854, 40.439879 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Centre Bell", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -73.570882, 45.496193 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Dunkin Donuts Civic Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -71.417934, 41.823317 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Echo Arena", "count": 3.0 }, "geometry": { "type": "Point", "coordinates": [ -2.97866821289062, 53.415261714992198 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "FedExForum", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -90.051691, 35.139489 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Forum", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 12.553056, 55.68102 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "HMV Hammersmith Apollo", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -0.225623, 51.490791 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "HP Pavilion", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -121.897951, 37.331479 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Halle Tony Garnier", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 4.824944, 45.729889 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Honda Center (formerly Arrowhead Pond Of Anaheim)", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -117.876477, 33.80618 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Jahrhunderthalle", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 8.518434, 50.098132 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Joe Louis Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -83.052624, 42.325748 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Knig Pilsener Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 6.872538, 51.490162 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Le Dme", "count": 2.0 }, "geometry": { "type": "Point", "coordinates": [ 5.405848, 43.317615 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Madison Square Garden", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -73.897424, 40.677885 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Motorpoint Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -1.418666, 53.402599 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "NBC Studios", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -73.979464, 40.758955 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Nassau Coliseum", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -73.58782, 40.720217 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "National Indoor Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -1.92104, 52.483698 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Newcastle Entertainment Centre", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 151.73625, -32.920833 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Olympiahalle", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 11.54555, 48.174 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Oracle Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -122.202945, 37.75035 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "P.C. Richard & Son Theater", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -73.991719, 40.742462 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Palace of Auburn Hills", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -83.243721, 42.696511 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Philips Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -84.399076, 33.759205 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Philipshalle", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 6.80249, 51.2091 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Power Balance Pavilion", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -121.517077, 38.648005 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Prudential Center", "count": 2.0 }, "geometry": { "type": "Point", "coordinates": [ -74.170268, 40.733747 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Rod Laver Arena", "count": 3.0 }, "geometry": { "type": "Point", "coordinates": [ 144.982206, -37.823328 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Rogers Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -123.108107, 49.277661 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "S.E.C.C.", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -4.29652, 55.86242 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Samsung-dong", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 127.054297, 37.487684 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "San Diego Sports Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -117.212212, 32.755195 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Schottenstein Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -83.024908, 40.008008 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Sommet Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -86.778492, 36.15913 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Sportpaleis", "count": 2.0 }, "geometry": { "type": "Point", "coordinates": [ 4.440409, 51.231728 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Sprint Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -94.581009, 39.097154 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Staples Center", "count": 2.0 }, "geometry": { "type": "Point", "coordinates": [ -118.267385, 34.043634 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "TD Garden", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -71.06174, 42.36526 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Target Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -93.274889, 44.979657 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "The Colonial Life Arena formerly The Colonial Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -81.036104, 33.994262 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "The O2", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -6.246855, 53.347999 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "The indigO2", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 0.003214, 51.500297 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Time Warner Cable Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -80.839226, 35.225078 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Toyota Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -95.362017, 29.750958 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Vector Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 174.773941, -36.846985 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Verizon Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -77.020922, 38.898047 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Vorst Nationaal \/ Forest National", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 4.325289, 50.810191 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "XL Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -72.675581, 41.767426 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Znith Europe", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 7.687103, 48.592845 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher", "name": "Manchester Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -2.243988, 53.487094 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher - OMG Tour", "name": "O2 Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 0.006877, 51.487582 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher After Party", "name": "Royale Boston", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -71.065332, 42.349685 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher OMG TOUR Part Two", "name": "Dubai Media City Amphitheatre", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 55.1501, 25.0924 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher OMG Tour", "name": "Rod Laver Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 144.982206, -37.823328 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher OMG. Tour", "name": "Allphones Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 151.066716, -33.847907 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher Oh My Gosh Concert", "name": "Sportpaleis", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ 4.440409, 51.231728 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "1st Mariner Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -76.6187, 39.288494 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "Greensboro Coliseum", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -79.825534, 36.058332 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "Jobing.com Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -112.261832, 33.53158 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "Mandalay Bay Events Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -115.176657, 36.092152 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "Scope Arena", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -76.287359, 36.854043 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "Scottrade Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -90.202888, 38.627335 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour", "name": "Wells Fargo Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -75.163994, 39.950087 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Usher's OMG Tour at Madison Square Garden", "name": "Madison Square Garden", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -73.897424, 40.677885 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Wango Tango", "name": "Staples Center", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -118.267385, 34.043634 ] } }
+,
+{ "type": "Feature", "properties": { "title": "Wham Bam Thank You Jam 2", "name": "Kingswood Music Theatre", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -79.539331, 43.839549 ] } }
+,
+{ "type": "Feature", "properties": { "title": "iTunes Festival 2012: Usher", "name": "Roundhouse", "count": 1.0 }, "geometry": { "type": "Point", "coordinates": [ -0.152499, 51.543512 ] } }
+
+]
+}

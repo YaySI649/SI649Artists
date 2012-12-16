@@ -76,6 +76,7 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 
 		var genre_scale = null;
 		var choropleth = null;
+		var artist_layer_instance = null, artist_layer_class;
 
 		var default_style = {
 			weight: 0,
@@ -86,10 +87,13 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 		console.log("Loading map for ID", map_id);
 		var map = L.map(map_id).setView([37.8, -96], 4);
 
+		// Temporary debugging.
+		window.visMap = map;
+
 		L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
-		    key: 'fa9058fec5c847268ff72b834c392c2e',
-		    attribution: CM_ATTR,
-		    styleId: 22677
+			key: 'fa9058fec5c847268ff72b834c392c2e',
+			attribution: CM_ATTR,
+			styleId: 22677
 		}).addTo(map);
 
 		// Note: this function gets called a few thousand times and needs to be efficient.
@@ -125,17 +129,141 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			choropleth = L.geoJson(admin_features, {
 				onEachFeature: function (feature, layer) {
 					// Attach the callbacks
-			        layer.bindPopup(feature.properties.ADMIN);
+					layer.bindPopup(feature.properties.ADMIN);
 				}
 			}).addTo(map);
 
 			updateStyle();
 		});
 
+		// Artist stuff.
+		function queryArtist(artist, callback) {
+			// Hope you like Usher.
+			$.getJSON('data/temp/usher.json', callback);
+		}
+
+		// Make a custom layer.
+		// Woah abrupt programming style shift.
+		// But I don't know quite enough Leaflet / JS object patterns to be consistent right now.
+		function add_artist_layer(artist) {
+			if (artist_layer_instance != null) {
+				console.log("Clearing artist layer.");
+				// Remove it from the map.
+				map.removeLayer(artist_layer_instance);
+			}
+
+			// Bostocks' Leaflet to D3 projection bridge.
+			function project(x) {
+				var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+				return [point.x, point.y];
+			}
+
+			// Local vars.  
+			// We're essentially treating them the same as layer vars because I'm not fond of JS "classes"
+			// and because it makes it easier to work in the D3 example code.
+			var path = d3.geo.path()
+					.projection(project)
+					.pointRadius(function(d) {
+						// This will probably need to be scaled.
+						return d.properties.count * map.getZoom();
+					});
+
+			// It decouples the usual attr('d') call because that's determined by the Leaflet zoom level.
+			var svg, g;
+			var feature, bounds;
+			var artist_data;
+
+			artist_layer_class = L.Class.extend({
+				initialize: function() {
+
+				},
+
+				onAdd: function(map) {
+					this._map = map;
+
+					// create a DOM element and put it into one of the map panes
+					svg = d3.select(map.getPanes().overlayPane).append("svg")
+						.classed('leaflet-zoom-hide map_body', true);
+
+					// svg.attr("width", $('#' + map_id).width())
+						// .attr("height", $('#' + map_id).height());
+					// 	.style("margin-left", bottomLeft[0] + "px")
+					// 	.style("margin-top", topRight[1] + "px");
+
+					g = svg.append("g");
+
+					feature = g.selectAll("path")
+						.data(artist_data.features)
+					.enter().append("path")
+						.on('click', function(d) {
+							d3.event.stopPropagation();
+							var coords = _.clone(d.geometry.coordinates);
+							coords.reverse();
+							console.log("Clicked", d, "at coords", coords);
+							// var popup = new L.Popup().setLatLng([43.0, -79.0]).setContent("blah").openOn(map);
+							var popup = new L.Popup()
+							    .setLatLng(coords)
+							    .setContent(d.properties.title + " at " + d.properties.name)
+							    .openOn(map);
+							console.log("Generated popup: ", popup, "on map", map);
+						});
+
+					bounds = d3.geo.bounds(artist_data);
+
+					// add a viewreset event listener for updating layer's position, do the latter
+					map.on('viewreset', this._reset, this);
+					this._reset();
+				},
+
+				onRemove: function(map) {
+					// remove layer's DOM elements and listeners
+					console.log("Removing SVG.");
+					svg.remove();
+					map.off('viewreset', this._reset, this);
+				},
+
+				_reset: function() {
+					// update layer's position
+					console.log("Geo bounds:", bounds);
+					var bottomLeft = project(bounds[0]),
+						topRight = project(bounds[1]);
+
+					bottomLeft[0] = bottomLeft[0] - map.getZoom() * 10;
+					bottomLeft[1] = bottomLeft[1] + map.getZoom() * 10;
+
+					topRight[0] = topRight[0] + map.getZoom() * 10;
+					topRight[1] = topRight[1] - map.getZoom() * 10;
+
+					console.log("Repositioning SVG: ", bottomLeft, topRight);
+					svg.attr("width", topRight[0] - bottomLeft[0])
+						.attr("height", bottomLeft[1] - topRight[1])
+						.style("margin-left", bottomLeft[0] + "px")
+						.style("margin-top", topRight[1] + "px");
+
+					g.attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+
+					// project() will be different, so need to redo the attr.
+					feature.attr("d", path);
+				}
+			});
+
+			// Make a GeoJSON thing out of the artist data.
+			// (Incorporates the date range filter)
+			queryArtist(artist, function(artist_json) {
+				artist_data = artist_json;
+				artist_layer_instance = new artist_layer_class();
+				map.addLayer(artist_layer_instance);
+			});
+
+		}
+
 		return {
 			set_genre: function(genre) {
 				current_genre = genre;
 				updateStyle();
+			},
+			set_artist: function(artist) {
+				add_artist_layer(artist);
 			}
 		};
 	};
@@ -152,4 +280,8 @@ $(function() {
 			map.set_genre($(this).text());
 		});
 	});
+
+	map.set_artist('Usher');
+
+	window.yayMap = map;
 });
