@@ -281,7 +281,7 @@ $(function() {
 		});
 	});
 
-	map.set_artist('Usher');
+	//map.set_artist('Usher');
 
 	window.yayMap = map;
 });
