@@ -348,11 +348,11 @@ def write_json_for_artist(artist, query_type='events'):
     parameter: artist, query_type (default 'events' or 'artist')
     """
     if query_type == 'events':
-        #url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getpastevents'
-        #params = {'artist':artist,'limit':999999,'format':'json',
-        #    'api_key':api_shuo}
-        url = "http://ws.audioscrobbler.com/2.0/?method=artist.getpastevents\
-            &api_key=%s&format=json&limit=999999&artist=%s"%(api_shuo, artist)
+        url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getpastevents'
+        params = {'artist':artist,'limit':999999,'format':'json',
+            'api_key':api_shuo}
+        #url = "http://ws.audioscrobbler.com/2.0/?method=artist.getpastevents\
+        #    &api_key=%s&format=json&limit=999999&artist=%s"%(api_shuo, artist)
         
     elif query_type == 'artist':
         url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo'
