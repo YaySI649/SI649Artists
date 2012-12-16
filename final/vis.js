@@ -273,6 +273,8 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 $(function() {
 	var map = Vis.genMap('map1');
 
+    setup_db();
+
 	_.each(Vis.genre_totals, function(v, k) {
 		var button = $('<button>' + k + '</button>');
 		$('#controls').append(button);
@@ -281,7 +283,7 @@ $(function() {
 		});
 	});
 
-	map.set_artist('Usher');
+	// map.set_artist('Usher');
 
 	window.yayMap = map;
 });

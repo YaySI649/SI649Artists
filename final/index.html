@@ -6,7 +6,14 @@
 	<script type="text/javascript" src="lib/d3.v2.min.js"></script>
 	<script type="text/javascript" src="lib/leaflet.js"></script>
 	<script type="text/javascript" src="lib/underscore.js"></script>
+	<script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="lib/dragslider.js"></script> 
 	<script type="text/javascript" src="vis.js"></script>
+	<script type="text/javascript" src="artist.js"></script>
+	<script type="text/javascript" src="database_api.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+
 	<link rel="stylesheet" href="css/main.css" />
 	<link rel="stylesheet" href="css/leaflet.css" />
 	<!--[if lte IE 8]>
@@ -16,6 +23,22 @@
 <body>
 <!-- Here's a placeholder for now. -->
 <h1>Artists</h1>
+<div id="artist_year_picker">
+	Artist: <input id="artist" type="text" name="Artist">
+	<div id="chart"></div>
+	<div id='year' style='margin:0px 20px;'>
+		<div id='widget' style='float:left;'>
+			<div id = 'slider_year' style="margin-left: 16px; width: 883px;"></div>
+		</div>
+		<div id='maxmin' style='float:left; margin:20px;'>
+				<span style='float:left;padding:0px 8px 0px 0px;font:bold 15px Ariel,sans-serif'>From:</span>
+				<span id = 'min_year' style='float:left;font:bold 15px Ariel,sans-serif'>1960</span>
+				</br>
+				<span style='float:left;padding:0px 5px 0px 0px;font:bold 15px Ariel,sans-serif'>To:</span>
+				<span id = 'max_year' style='float:right;font:bold 15px Ariel,sans-serif'>2012</span>  
+		</div>
+	</div>
+</div>
 <div id="controls"></div>
 <div id="map1" class="map"></div>
 </body>
