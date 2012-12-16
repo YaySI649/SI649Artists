@@ -78,6 +78,9 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 		var choropleth = null;
 		var artist_layer_instance = null, artist_layer_class;
 
+		var upper_date = 2012, lower_date = 1960;
+		var current_artist = null;
+
 		var default_style = {
 			weight: 0,
 			fillOpacity: 0.7
@@ -139,7 +142,7 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 		// Artist stuff.
 		function queryArtist(artist, callback) {
 			// Hope you like Usher.
-			$.getJSON('data/temp/usher.json', callback);
+			get_artist_geojson(artist, lower_date, upper_date, callback);
 		}
 
 		// Make a custom layer.
@@ -263,7 +266,16 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 				updateStyle();
 			},
 			set_artist: function(artist) {
+				current_artist = artist;
 				add_artist_layer(artist);
+			},
+			update_dates: function(lower, upper) {
+				upper_date = upper;
+				lower_date = lower;
+
+				if (current_artist != null) {
+					add_artist_layer(current_artist);
+				}
 			}
 		};
 	};

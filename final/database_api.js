@@ -196,5 +196,50 @@ function callback_log(result){
         //}
     }
 
+function get_artist_geojson(artist, lower_date, upper_date, callback){
+    
+    var artist_sql = "select e.title, v.name, v.long, v.lat, count(*) as count "+
+                        "from EVENTS e, VENUES v where e.headliner = '" + artist+
+                        "'and v.venue_id = e.venue_id and e.cancelled = 0 " +
+                        "and strftime('%Y', date) between '" + lower_date + "' and '" + upper_date + "' group by v.venue_id";
+    console.log(artist_sql);
+    query_db(artist_sql, function(results) {
+        callback_geojson(results, callback);
+    });
+}
+
+function callback_geojson(results, callback){
+    
+    var features = [];
+    for (row in results){
+        //console.log(results[row]);
+        var title = results[row]['title'];
+        var name = results[row]['name'];
+        var count = results[row]['count'];
+        var longi = results[row]['long'];
+        var lat = results[row]['lat'];
+        var feature = { 
+            "type": "Feature", 
+            "properties": 
+            { 
+                "title": title, 
+                "name": name, 
+                "count": count
+            }, 
+            "geometry": { 
+                "type": "Point", 
+                "coordinates": [ longi, lat ] 
+            } 
+        }
+        features.push(feature);
+    }
+    var artist_geojson = {
+        "type": "FeatureCollection",
+        "features": features,
+    };
+    
+    console.log(artist_geojson);
+    callback(artist_geojson);
+}
 //teaser query:)
 //query_db("select count(*), b.city, b.country, c.genre from EVENTS a join VENUES b on a.venue_id = b.venue_id join ARTISTS c on c.name = a.headliner where c.genre='Pop' group by b.city, b.country order by count(*) DESC")

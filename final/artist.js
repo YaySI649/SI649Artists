@@ -25,6 +25,8 @@ $(document).ready(function(){
                 query_db("select count(*), strftime('%Y', date) as year from EVENTS a join "+
                        "ARTISTS b on (a.headliner) = (b.name) "+
                        "where (b.name) = '" + artist_name + "' group by year", renderChart);
+
+                yayMap.set_artist(artist_name);
                 return false;
             }
 	        })
@@ -96,13 +98,14 @@ $(document).ready(function(){
 		svg.selectAll(".bar")
 		      .data(data)
 		    .enter().append("rect")
+		      .attr("id", function(d){ return d.year;})
 		      .attr("class", "bar")
 		      .attr("x", function(d) { return x(d.year); })
 		      .attr("width", x.rangeBand())
 		      .attr("y", function(d) { return y(d.events); })
 		      .attr("height", function(d) { return height - y(d.events); })
 		      .attr('stroke', 'white')
-			  .attr('fill', 'steelblue');
+			  .attr('fill', 'grey');
 
 		svg.selectAll(".label")
 			  .data(data)
@@ -138,13 +141,31 @@ $(document).ready(function(){
                 document.getElementById('min_year').innerHTML = lower_year;
                 document.getElementById('max_year').innerHTML = higher_year;
                 //redraw visualization by new filter value
-                console.log(lower_year,higher_year);
+                highlightBar(lower_year, higher_year);
+
+                // yayMap.update_dates(lower_year, higher_year);
+                //console.log(lower_year,higher_year);
                 //drawVisualization(lower_finance/100,higher_finance/100,lower_poverty/100,higher_poverty/100);
-            }                
+            },
+            stop: function(event, ui) {
+            	var lower_year = ui.values[0];
+            	var higher_year = ui.values[1];
+            	yayMap.update_dates(lower_year, higher_year);
+            }  
         });            
 
     };
 
     setupSlider(1960,2012);
+
+    function highlightBar(start, end){
+    	//set fill to default before highlight bars
+    	$('.bar').css("fill", "grey");
+		for(var id=start;id<=end;id++){
+			var year = '#' + id;
+			$(year).css("fill", "steelblue");
+		} 	
+
+    }
 	
 })
