@@ -1,5 +1,20 @@
+html {
+	background-color: grey;
+}
+
+body {
+	min-width: 600px;
+	max-width: 1000px;
+	margin: 0 auto;
+	background-color: white;
+	width: 80%;
+	padding: 20px;
+}
+
 .map {
 	height: 500px;
+	width: 80%;
+	float:left;
 }
 
 .map_body {
@@ -40,4 +55,8 @@ body {
 
 #chart {
 	height: 205px;
+}
+
+#legends {
+	float: left;
 }

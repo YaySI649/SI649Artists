@@ -142,6 +142,8 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 				.range(['#eee', 'red']);
 
 			choropleth.setStyle(style);
+
+			Vis.updateGenreLegend(current_genre, genre_totals[current_genre], genre_scale);
 		}
 
 		// Make sure our own stuff is loaded before adding that layer.
@@ -181,15 +183,13 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 				return [point.x, point.y];
 			}
 
+
 			// Local vars.  
 			// We're essentially treating them the same as layer vars because I'm not fond of JS "classes"
 			// and because it makes it easier to work in the D3 example code.
 			var path = d3.geo.path()
-					.projection(project)
-					.pointRadius(function(d) {
-						// This will probably need to be scaled.
-						return d.properties.count * map.getZoom();
-					});
+					.projection(project);
+					// PointRadius gets set when the data actually comes in.
 
 			// It decouples the usual attr('d') call because that's determined by the Leaflet zoom level.
 			var svg, g;
@@ -288,13 +288,26 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			// (Incorporates the date range filter)
 			queryArtist(artist, function(artist_json) {
 				artist_data = artist_json;
+
+				var artistScale = d3.scale.linear()
+					.domain([0, d3.max(artist_data.features, function(d) { return d.properties.count })])
+					.range([3, 11]);
+
+				path.pointRadius(function(d) {
+					return artistScale(d.properties.count); // * map.getZoom();
+				});
+
 				if (artist_layer_instance != null) {
 					console.log("Clearing artist layer.");
 					// Remove it from the map.
 					map.removeLayer(artist_layer_instance);
 				}
+
 				artist_layer_instance = new artist_layer_class();
 				map.addLayer(artist_layer_instance);
+
+				Vis.updateArtistLegend(artist, artistScale.domain()[1], artistScale);
+
 			});
 
 		}
