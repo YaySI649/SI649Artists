@@ -233,9 +233,15 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 							    var city = result[0]['city'];
 							    var website = result[0]['website'];
 							    var img_url = result[0]['image'];
-							    var content = "<ul style='list-style-type:none;'><li><strong>"+d.properties.title+"</strong></li>";
-							    content += "<li><a href = '" + website +"' target=\"_blank\">"+
-							                 d.properties.name+"</a></li>" + "<li>"+city+"</li>";
+							    var content = "<ul style='list-style-type:none;'><li><strong>" + 
+							    	"<a href = '" + website +"' target=\"_blank\">" +
+									d.properties.name + "</a></strong> (" + d.properties.count + " event" + ((d.properties.count == 1) ? '' : 's') + ")</li>";
+							    content += "<li>"+city+"</li>";
+							    if (d.properties.count == 1) {
+							    	content += "<li>Tour: <strong>" + d.properties.title + "</strong></li>";
+							    }
+							    content += "</ul>";
+							    console.log(content);
 							    //content += "<img src = '"+img_url +"'>";
 							    var popup = new L.Popup()
                                 .setLatLng(coords)
