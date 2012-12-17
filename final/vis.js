@@ -107,8 +107,18 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			if (adm_code) {
 				var gcount = adm_code[current_genre];
 				if (gcount) {
+					// Add together the events for this date range.
+					var g_total = {};
+
+					// Fine.  No funny business with functions.
+					for (var i = lower_date; i <= upper_date; i++) {
+						_.extend(g_total, (gcount[i] || {}));
+					}
+
+					// console.log("Got gtotal:", g_total);
+
 					return _.extend(_.clone(default_style), {
-						fillColor: genre_scale(gcount)
+						fillColor: genre_scale(_.size(g_total))
 					});
 				}
 			}
@@ -275,6 +285,8 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 				if (current_artist != null) {
 					add_artist_layer(current_artist);
 				}
+
+				updateStyle();
 			}
 		};
 	};
