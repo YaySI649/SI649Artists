@@ -139,7 +139,7 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 		function updateStyle() {
 			genre_scale = d3.scale.linear()
 				.domain([0, genre_totals[current_genre]])
-				.range(['#eee', 'red']);
+				.range(['#eee', '#2e9180']);
 
 			choropleth.setStyle(style);
 
