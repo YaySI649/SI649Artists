@@ -225,7 +225,7 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 							console.log("Clicked", d, "at coords", coords);
 							// var popup = new L.Popup().setLatLng([43.0, -79.0]).setContent("blah").openOn(map);
 							
-							var venue_sql = "select distinct v.name, v.city, v.website, e.image"+
+							var venue_sql = "select count(*) as count, v.name, v.city, v.website, e.image"+
 							             " from VENUES v join EVENTS e on v.venue_id = e.venue_id where name = '" 
 							             + d.properties.name +"'";
 							query_db(venue_sql, function(result){
@@ -233,7 +233,8 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 							    var city = result[0]['city'];
 							    var website = result[0]['website'];
 							    var img_url = result[0]['image'];
-							    var content = "<ul style='list-style-type:none;'><li><strong>"+d.properties.title+"</strong></li>";
+							    var count = result[0]['count'];
+							    var content = "<ul style='list-style-type:none;'><li><strong>"+count+" Events</strong></li>";
 							    content += "<li><a href = '" + website +"' target=\"_blank\">"+
 							                 d.properties.name+"</a></li>" + "<li>"+city+"</li>";
 							    //content += "<img src = '"+img_url +"'>";
