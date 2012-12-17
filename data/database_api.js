@@ -196,6 +196,7 @@ function callback_log(result){
         //}
     }
 
+// A wrapper func to get single artist event and then render chart
 function get_artist_geojson(artist){
     
     var artist_sql = "select e.title, v.name, v.long, v.lat, count(*) as count "+

@@ -208,11 +208,23 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 							coords.reverse();
 							console.log("Clicked", d, "at coords", coords);
 							// var popup = new L.Popup().setLatLng([43.0, -79.0]).setContent("blah").openOn(map);
-							var popup = new L.Popup()
-							    .setLatLng(coords)
-							    .setContent(d.properties.title + " at " + d.properties.name)
-							    .openOn(map);
-							console.log("Generated popup: ", popup, "on map", map);
+							
+							var venue_sql = "select * from VENUES where name = '" + d.properties.name +"'";
+							query_db(venue_sql, function(result){
+							    console.log(result);
+							    var city = result[0]['city'];
+							    var website = result[0]['website'];
+							    var content = "<ul style='list-style-type:none;'><li><strong>"+d.properties.title+"</strong></li>";
+							    content += "<li>"+d.properties.name+"</li>" + "<li>"+city+"</li>";
+							    if (website!=""){
+							        content += "<li><a href = '" + website +"' target=\"_blank\">Website</a></li>"
+							    }
+							    var popup = new L.Popup()
+                                .setLatLng(coords)
+                                .setContent(content)
+                                .openOn(map);
+                                console.log("Generated popup: ", popup, "on map", map);
+							})
 						});
 
 					bounds = d3.geo.bounds(artist_data);
