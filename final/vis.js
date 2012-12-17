@@ -86,9 +86,17 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 			fillOpacity: 0.7
 		};
 
+		var map_loaded = false;
+		var map_callback = null;
+
 		// Init the map immediately.
 		console.log("Loading map for ID", map_id);
-		var map = L.map(map_id).setView([37.8, -96], 4);
+		var map = L.map(map_id).on('load', function() {
+			if (map_callback != null) {
+				map_callback();
+			}
+			map_loaded = true;
+		}).setView([37.8, -96], 4);
 
 		// Temporary debugging.
 		window.visMap = map;
@@ -144,9 +152,17 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 					// Attach the callbacks
 					layer.bindPopup(feature.properties.ADMIN);
 				}
-			}).addTo(map);
+			});
 
-			updateStyle();
+			if (map_loaded) {
+				choropleth.addTo(map);
+				updateStyle();
+			} else {
+				map_callback = function() {
+					choropleth.addTo(map);
+					updateStyle();
+				}
+			}
 		});
 
 		// Artist stuff.
