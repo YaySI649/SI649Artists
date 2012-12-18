@@ -336,6 +336,10 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 				}
 
 				updateStyle();
+			},
+			trigger_resize: function() {
+				// A workaround for the weird map loading bug.
+				map._onResize();
 			}
 		};
 	};
@@ -373,4 +377,9 @@ $(function() {
 	//map.set_artist('Usher');
 
 	window.yayMap = map;
+
+	window.setTimeout(function() {
+		console.log("Triggering resize.");
+		map.trigger_resize();
+	}, 1000);
 });
