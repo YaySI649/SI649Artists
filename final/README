@@ -1,0 +1,8 @@
+This code requires ajax requests and as such won't work if you just drag "index.html" to a browser.  To run it, either:
+
+- `cd` into the "final" directory and run `python -m SimpleHTTPServer 9000`, then navigate to "localhost:9000"
+- Go to https://dl.dropbox.com/u/525454/649_final/index.html (which contains the same code)
+
+We have our code stored on GitHub as well: https://github.com/YaySI649/SI649Artists
+
+One other important note: Browser compatibility is an issue.  We have all had good success with Chrome.  Firefox apparently doesn't support the WebDB APIs we need, and Safari for some reason is having trouble loading the data.  (Future work...)
