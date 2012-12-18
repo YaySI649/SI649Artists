@@ -71,6 +71,7 @@ function setup_db(){
                     /////////////////////////////////////////////////
                     ///SHOULD　ADD CALLBACKS IN HERE!!!!!!!!
                     //////////////////////////////////////////////
+                    setup_controls();
                     // alert("use existing db - SHOULD ADD SET UP FUNCS IN CALLBACK HERE!!!!");
                     // test
                     //query_db("select count(*), b.city, b.country, c.genre from EVENTS a "+
@@ -121,8 +122,26 @@ function BulkInsert(type, db){
                    if (insert_index%10==0 || insert_index == len-1){
                        $( "#progressbar" ).progressbar("value", Math.round(insert_index/(len-1)*100) );
                    }
+                   if (insert_index == len-1 && type=="EVENTS"){
+                       // When events are completed loaded, add index for artists
+                       document.getElementById('logInsert').innerHTML='Creating Index';
+                       create_index(db);
+                   }
                })
        }});
+}
+
+function create_index(db){
+    db.transaction(function(transaction){
+        transaction.executeSql("CREATE INDEX artist_id on ARTISTS(name);",[],
+                            function(){
+                                // alert("done");
+                                //$.noConflict();
+                                setup_controls();
+                                jQuery.unblockUI();
+                                //document.location.reload(true);
+                            });
+    });
 }
 
 //main function to populate db
@@ -153,17 +172,6 @@ var PopulateDB = function(){
    BulkInsert('VENUES', db);
    BulkInsert('EVENTS', db);
    
-   //Create index for artists table (after insert)
-    db.transaction(function(transaction){
-        document.getElementById('logInsert').innerHTML='Creating Index'
-        transaction.executeSql("CREATE INDEX artist_id on ARTISTS(name);",[],
-                            function(){
-                                // alert("done");
-                                //$.noConflict();
-                                jQuery.unblockUI();
-                                //document.location.reload(true);
-                            });
-    }); 
 }
 
 //Main API to execute sql and return obj list

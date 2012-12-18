@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function setup_controls(){
 
     $(function() {
 
@@ -168,4 +168,4 @@ $(document).ready(function(){
 
     }
 	
-})
+}
