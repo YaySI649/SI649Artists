@@ -19,7 +19,7 @@ function setup_controls(){
                 $( "#artist" ).val( ui.item.value );
                 var artist_name = $( "#artist" ).val();
                 //clear previous barchart first
-                d3.select("#artist_year_picker svg")
+                d3.select("#chart svg")
        				.remove();
                 //get barchart data based on selected name and draw d3 barchant
                 query_db("select count(*), strftime('%Y', date) as year from EVENTS a join "+
