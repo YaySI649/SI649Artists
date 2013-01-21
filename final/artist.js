@@ -58,8 +58,8 @@ function setup_controls(){
 		//console.log(data);
 
 		var margin = {top: 20, right: 5, bottom: 30, left: 5},
-			width = 960 - margin.left - margin.right,
-		    height = 200 - margin.top - margin.bottom;
+			width = 800 - margin.left - margin.right,
+		    height = 150 - margin.top - margin.bottom;
 
 		//var formatPercent = d3.format(".0%");
 
@@ -88,7 +88,7 @@ function setup_controls(){
 		      .call(xAxis)
 		      .attr('stroke', 'none')
 			  .attr('fill', 'black')
-			  //.attr("dx", "-1.35em") // vertical-align: middle
+			  //.attr("dx", "-1.20em") // vertical-align: middle
 			  //.attr("transform", "rotate(270,0,0)translate(-"+height+",0)")
 			  .attr('text-anchor', 'end');
 		xaxis.selectAll("text")

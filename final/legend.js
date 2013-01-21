@@ -4,7 +4,7 @@ $(document).ready(function(){
 		d3.select("#genreLegend svg").remove();
 
 		var genreLegend = d3.select("#genreLegend").append("svg")
-												   .attr("width", 120)
+												   .attr("width", 100)
                                    				   .attr("height", 100);
 		var Q1 = (0 + max)/4;
 		var Q2 = Q1 * 2;

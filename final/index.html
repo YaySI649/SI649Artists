@@ -23,6 +23,50 @@
 </head>
 <body>
 <!-- Here's a placeholder for now. -->
+
+<div id="header_wrapper">
+    <div id="vis_title">
+        <h1>TourExplorer</h1>
+        <h3> - Mapping Musican Tours</h3>
+    </div>
+    <div id="nav">
+        <a id="nav_item" href="index.html">Home</a>
+        <!--<a id="nav_item" href="index.html">How To?</a>-->
+        <a id="nav_item" href="about.html">About</a>
+    </div>
+</div>
+
+<div id="map1" class="map"></div>
+<div class="artist_picker">
+    <span class="control_title">Enter an Artist to Track:</span> <input id="artist" type="text" name="Artist">
+</div>
+<div class="genre_picker">
+    <div id="controls"></div>
+</div>
+
+<div class="chart_year_wrapper">
+<div id="chart"></div>
+    <div id='year'>
+        <div id='widget'>
+            <div id = 'slider_year' style="right:10px; width: 730px;"></div>
+        </div>
+        <div id='maxmin'>
+            Selected Year <span id = 'min_year'>1960</span> to Year <span id = 'max_year'>2012</span>  
+            <!--
+                <span>From:</span>
+                <span id = 'min_year'>1960</span>
+                </br>
+                <span>To:</span>
+                <span id = 'max_year'>2012</span>  -->
+        </div>
+    </div>
+</div>
+
+<div id="legends">
+    <div id="genreLegend" style="float:left;"></div>
+    <div id="artistLegend" style="float:left;"></div>
+</div>
+<!--
 <h1>Artists</h1>
 <div id="artist_year_picker">
 	Artist: <input id="artist" type="text" name="Artist">
@@ -41,11 +85,12 @@
 	</div>
 </div>
 <div id="controls"></div>
-<div id="map1" class="map"></div>
+
 <div id="legends">
 	<div id="genreLegend"></div>
 	<div id="artistLegend"></div>
 </div>
+-->
 <br style="clear: both;" />
 </body>
 </html>
